@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 2.1 - Working Directories; Data Import and Export"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "January 2026"
 
 output: 
   learnr::tutorial:
@@ -14,7 +16,7 @@ description: "Import_Export"
 
 ## Intro and Setup
 
-We just spent several weeks doing (what I hope was) some of the most fun stuff in R - data viz. We sort of started with our dessert. Now, unfortunately, we have to take a week for some vegetables. But then we'll get back into entrees for a couple weeks - then, sadly, some more vegetables, and then close out with some side dishes. OK, I'm really torturing this metaphor but I'm writing this just before lunch. You get the point. Moving on.
+We just spent several weeks doing (what I hope was) some of the most fun stuff in R - data viz. We sort of started with our dessert. Now, unfortunately, we have to take a week for some vegetables. But then we'll get back into entrees for a couple weeks - then, sadly, some more vegetables, and then close out with some side dishes. 
 
 We need to load 4 packages today. You'll likely need to install a couple of them first, but relax - remember, `p_load()` should take care of that for you. **Just remember to run this code in your own script before proceeding.**
 
@@ -28,11 +30,11 @@ pacman::p_load(tidyverse, readxl, data.table, rstudioapi)
 
 Before we get into the import and export business...
 
-```{r, out.width = "100%", fig.cap = "*Like these wise fellows!*", echo = FALSE}
-knitr::include_graphics("./images/import_export_biz.jpg")
+```{r, out.width = "100%", fig.cap = "*Hello!*", echo = FALSE}
+knitr::include_graphics("./images/book_of_mormon.jpg")
 ```
 
-...do you have a moment to talk about **working directories**? Well whether you do or not that's what we're about to do.
+...do you have a moment to talk about our Lord and Savior, **working directories**? 
 
 ### Finding Your **Working Directory**
 
@@ -70,7 +72,7 @@ Alternatively, more recent versions of RStudio allow you to do this manually by 
 knitr::include_graphics("./images/setting_wd_manually.jpg")
 ```
 
-### How a Working Directory...Uh, Works
+### How a Working Directory Works
 
 As noted above, the **working directory** is the default place where R and RStudio will look for or try to write files to. For example, go to Canvas and download the file `obesity-diabetes.csv` from the Datasets Module. This is a simple data frame that contains the prevalence of diabetes and obesity in all 50 states for 2017. *Do not move it from the Downloads folder.*
 
@@ -240,4 +242,4 @@ In 95% of cases you won't be able to detect any practical difference. But if you
 
 ## Summary
 
-This tutorial was a bit boring, but we needed to cover setting working directories and importing and exporting (some common types of) data. Next up is learning how to manipulate data frames like a deity.
+This tutorial was a bit boring, but we needed to cover setting working directories and importing and exporting (some common types of) data. Next up is learning how to manipulate data frames.

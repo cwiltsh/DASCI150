@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 3.2 - Data Transformation II"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -20,7 +22,7 @@ pacman::p_load(learnr)
 
 ## Intro and Setup
 
-This week is some more entrees. We've learned various been sampling various ingredients of the data transformation meal, but this week we put it all together into a main course.
+This week is some more entrees. We've been sampling various ingredients of the data transformation meal, but this week we put it all together into a main course.
 
 We need to load a few packages today, as usual. If any of them need to also be installed, remember `p_load()` should take care of that for you. **Just remember to run this code in your own script before proceeding.**
 
@@ -308,10 +310,6 @@ If we have to use multiple functions together to accomplish the transformation w
 
 What is a pipe?
 
-```{r img0, echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "*Not this, though if you have an opportunity to visit the Magritte museum in Brussels I recommend it.*"}
-knitr::include_graphics("images/not_a_pipe.jpg")
-```
-
 ```{r img1, echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "*This is why it's called the pipe.*"}
 knitr::include_graphics("images/the_pipe.jpg")
 ```
@@ -370,33 +368,6 @@ gapminder |>
   geom_point(aes(x = log_gdpPercap, y = lifeExp))
 
 ```
-
-Another example: have you ever watched sports on TV and seen a graphic with a weirdly specific fact? 
-
-```{r img2, echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "*This is an oddly specific record.*"}
-knitr::include_graphics("images/very_specific_record.png")
-```
-
-Somebody - a data scientist, like some of you might become! - has to be producing those, and they might be doing it with R!
-
-Using a dataset I just sneakily imported without you knowing, let's find the top NFL (American football) rushers who...
-
-1. Rushed for the most yards in a single year
-2. Post-2000
-3. And attempted <5 rushes per game on average
-
-```{r pipe_ex2, exercise = TRUE}
-rush |>
-  filter(Year >= 2000 &
-        Rushing.Attempts.Per.Game <= 5) |>
-  select(Name, Team, Year, Rushing.Yards) |> 
-  arrange(desc(as.numeric(Rushing.Yards)))
-
-```
-
-If you had **domain knowledge** about the subject you're studying - in this case football - you might look at this list and notice some interesting things. Like, for example, that many (though not all) of these players are quarterbacks (e.g. Bortles, Kaepernick, Garcia). Tavon Austin is a wide receiver who is sometimes asked to run the ball on trick plays, which helps explain why he has few rushes (<5 per game) but many yards. 
-
-Without **domain knowledge** you might not know what to make of this list. Consider this an important lesson in not thinking *just* knowing the data science or math or programming is enough. Work with subject matter experts to get the most out of your data.
 
 One final example. What if we wanted to plot each country's average years of life expectancy above or below the world average in 2007?
 

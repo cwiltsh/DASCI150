@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 3.1 - Data Transformation I"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -91,7 +93,7 @@ quiz(
       answer("data, then mapping", correct = TRUE),
       answer("mapping, then data"),
       answer("data, then aes()"),
-      answer("We don't know"),
+      answer("I don't know"),
       type = "learnr_radio",
       allow_retry = TRUE)
 )  
@@ -193,9 +195,9 @@ Most functions have the **order** of the first few arguments they expect pre-spe
 quiz(
   question("What are the first two **arguments** `aes()` expects?",
       answer("y =, then x ="),
-      answer("x =, then y =", correct = TRUE, message = "That's right! When you provide values to `aes()`, R will happily (helpfully?) assign the first one to `x =`, and the second one to `y =`."),
+      answer("x =, then y =", correct = TRUE, message = "That's right! When you provide values to `aes()`, R will assign the first one to `x =`, and the second one to `y =`."),
       answer("x =, then fill ="),
-      answer("We don't know"),
+      answer("I don't know"),
       type = "learnr_radio",
       allow_retry = TRUE)
 )  
@@ -229,7 +231,7 @@ ggplot(aes(body_mass_g, flipper_length_mm), penguins) +
 
 The big benefit of unnamed arguments is it makes our code more compact. But the big downside is if our arguments are out of the *order* `ggplot()` and `aes()` expect we could run into big problems.
 
-`ggplot()` *always* takes `data =` as its first argument - this is the data frame or tibble you want it to use for plotting. This is why the third plot above throws an error - it thinks you want to tell it `aes(flipper_length_mm, body_mass_g)` is the **value** of the `data =` **argument**, but it has no idea what to do with that because it's not a data frame or tibble! So it vomits and ragequits.
+`ggplot()` *always* takes `data =` as its first argument - this is the data frame or tibble you want it to use for plotting. This is why the third plot above throws an error - it thinks you want to tell it `aes(flipper_length_mm, body_mass_g)` is the **value** of the `data =` **argument**, but it has no idea what to do with that because it's not a data frame or tibble! 
 
 `aes()` always takes as its first two arguments `x =`, then `y =`. This is why the second plot above gives you something you didn't expect - R successfully assigned `penguins` to the `data =` argument, but in `aes()` you inadvertently told it to put `flipper_length_mm` on the x-axis and `body_mass_g` on the y-axis because it forces the first value you provide to correspond to the default fist argument, `x =`, and the second one to the default second argument, `y =`.
 
@@ -391,7 +393,7 @@ Notice a few things:
 This is a bit of a sidenote, but wrapping a newly created object in parentheses `()` is a quick, compact way to both create *and* print something without a new line to order the printing. This is incredibly useful for plots you want to both save and display at once.
 
 ```{r, print_fast, exercise = TRUE}
-#Try this as-is, then wrap the entire thing in parentheses (that is, "(" before bday and ")" at the end of the line)
+#Try this as-is, then wrap the entire thing in parentheses (that is, "(" before abq_flights and ")" at the end of the line)
 abq_flights <- filter(flights, dest == "ABQ")
 ```
 
@@ -435,7 +437,7 @@ This is getting *very* computer science-y but I want to scratch the surface of o
 #Does the square root of 2, squared, equal 2?
 sqrt(2)^2 == 2
 ```
-`FALSE`!? What is this witchcraft?
+`FALSE`!? 
 
 A computer can't store infinite digits of a number. So if you have an irrational number with infinite decimal points - like, say, `1/49`, or `sqrt(2)` - R is forced to round it behind the scenes. It rounds after a *lot* of digits, mind you, but it's still rounded from its true value. R doesn't store `1/49` as *exactly* `1/49`...so when you multiply it by 49 it's not exactly 1. What a nightmare.
 
@@ -454,10 +456,10 @@ What if I wanted to see the flights on my birthday, August 29?
 
 ```{r, boolean1, exercise = TRUE}
 #Try this as-is, then wrap the entire thing in parentheses (that is, "(" before bday and ")" at the end of the line)
-(bday_flights <- filter(flights, month == 8 & day == 29))
+bday_flights <- filter(flights, month == 8 & day == 4)
 ```
 
-Here I wanted only flights with *both* `month == 8` *and* `day == 29`. To specify this I used the **boolean operator** `&` (an ampersand, meaning "AND"). The major operators are:
+Here I wanted only flights with *both* `month == 8` *and* `day == 4`. To specify this I used the **boolean operator** `&` (an ampersand, meaning "AND"). The major operators are:
 
 * `&` means **AND**. 
 
@@ -572,7 +574,7 @@ str(flights_filtered)
 
 These are subtle differences, but be sure if you're using three or more criteria you group them properly using parentheses so they evaluate properly.
 
-One last example: What if instead of only looking for flights to Atlanta or Albuquerque not operated by United, I wanted to *exclude* those flights (I know this is a weird request, but bear with me). In other words, I want flights NOT (to Atlanta or Albuquerque AND NOT operated by United). You can negate an entire sequence of other criteria by using `!` and parentheses:
+One last example: What if instead of only looking for flights to Atlanta or Albuquerque not operated by United, I wanted to *exclude* those flights. In other words, I want flights NOT (to Atlanta or Albuquerque AND NOT operated by United). You can negate an entire sequence of other criteria by using `!` and parentheses:
 
 ```{r boolean_practice3, exercise = TRUE}
 #5. Filter to all flights NOT (to Atlanta (ATL) OR Albuquerque (ABQ) AND NOT operated by United (carrier UA))
@@ -592,6 +594,7 @@ One last thing we need to cover while we're talking about making comparisons (ei
 ```{r miss1}
 NA > 5
 ```
+
 ```{r miss2}
 NA + 10
 
@@ -684,7 +687,7 @@ ggplot(flights) +
   facet_wrap(~ origin, nrow = 3)
 
 ```
-Oook. Some tiny carriers with weird departure patterns are completely skewing the graph. It turns out they're "HA" and "OO". Let's get rid of them.
+We have some tiny carriers with weird departure patterns are completely skewing the graph. It turns out they're "HA" and "OO". Let's get rid of them.
 
 ```{r better, exercise = TRUE}
 #A more readable graph
@@ -702,7 +705,7 @@ ggplot(filter(flights, carrier %in% c("DL", "UA"))) +
   facet_wrap(~ origin, nrow = 3)
 
 ```
-Substantially more readable, no? I really wanted to make this a question on HW2 but I couldn't do it without you knowing `filter()` :)
+Substantially more readable!
 
 ## Selecting Variables With `select()`
 
@@ -798,7 +801,7 @@ Make the first two columns the origin and destination airports, and only include
 
 ## Sorting Data Frames With `arrange()`
 
-While `filter()` chooses a subset of rows, `arrange()` simply...well, re-arranges (or sorts) the rows based on the columns you specify. By default it sorts them in **ascending** order (lowest-to-highest). For example, let's sort flights from earliest to latest scheduled departure time:
+While `filter()` chooses a subset of rows, `arrange()` re-arranges (or sorts) the rows based on the columns you specify. By default it sorts them in **ascending** order (lowest-to-highest). For example, let's sort flights from earliest to latest scheduled departure time:
 
 ```{r arrange1, exercise = TRUE}
 #Sort from earliest to latest scheduled departure time

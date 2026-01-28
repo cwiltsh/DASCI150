@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 3.3 - Data Transformation III"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -210,7 +212,7 @@ And how many did we end up with? 134.
 quiz(
   question("Have you tried to figure out why?",
       answer("Yes", correct = TRUE, message = "Hopefully you guessed that the `weather` data frame actually measures the weather every *hour* (actually most but not all of them), not every *day*. So when you asked R to just search for matches on airport and day, it created a new record in `flights` for every matching weather measurement it could find (usually 22 or 23 per day). Imagine if we did this for all 336,776 flights rather than just 6 of them. Yikes!"),
-      answer("No", message = "Keep trying, then when you have a guess (or have tried for a little bit and have nothing) click Yes."),
+      answer("No", message = "Keep trying, then when you have a guess click Yes."),
       type = "learnr_radio",
       allow_retry = TRUE)
 )  
