@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 4.3 - Data Cleaning I - General Intro"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -50,10 +52,12 @@ stroke_full_raw <- read.csv("./datasets/stroke_test.csv")
 
 Let's start at the beginning. You get a dataset. Now what?
 
-We're going to work with some data on stroke recovery from the Inter-University Consortium for Social and Political Research (ICPSR), an absolutely *massive* repository of shared data on a huge range of topics from researchers around the globe. Citation: Ostir, Glenn, Ottenbacher, Kenneth, and Kuo, Yong Fang. Stroke Recovery in Underserved Populations 2005-2006 [United States]. Ann Arbor, MI: Inter-university Consortium for Political and Social Research [distributor], 2016-05-03. https://doi.org/10.3886/ICPSR36422.v1
+We're going to work with some data on stroke recovery from the Inter-University Consortium for Social and Political Research (ICPSR), an absolutely *massive* repository of shared data on a huge range of topics from researchers around the globe. 
+
+>Citation: Ostir, Glenn, Ottenbacher, Kenneth, and Kuo, Yong Fang. Stroke Recovery in Underserved Populations 2005-2006 [United States]. Ann Arbor, MI: Inter-university Consortium for Political and Social Research [distributor], 2016-05-03. https://doi.org/10.3886/ICPSR36422.v1
 
 
-The data - after being trimmed down and tidied slightly by me - is stored in the data frame `stroke`. How might you explore it? Think about what your approach would be for a moment. Consider the techniques you learned way back in Tutorial 1.1. 
+The data - after being trimmed down and tidied slightly by Dr. Binney - is stored in the data frame `stroke`. How might you explore it? Think about what your approach would be for a moment. Consider the techniques you learned way back in Tutorial 1.1. 
 
 Then I'll give you my process for getting oriented and acclimated to a new data frame.
 
@@ -94,7 +98,7 @@ What about our other variables? Let's take a look at some:
 
 * `AGE` - this one seems pretty self-explanatory. Probably the patient's age in years. And those values make sense. Easy.
 
-* `FEMALE` - well, OK, this is probably gender? But why are these numbers? What does `FEMALE = 0` mean? My intuition is 0 = Male and 1 = Female (0/1 is a very common No/Yes coding, and "FEMALE No" would be "Male" - with sincere apologies to our non-binary friends), but we should definitely double-check that.
+* `FEMALE` - well, OK, this is probably sex? But why are these numbers? What does `FEMALE = 0` mean? My intuition is 0 = Male and 1 = Female (0/1 is a very common No/Yes coding, and "FEMALE No" would be "Male" - with sincere apologies to our non-binary friends), but we should definitely double-check that.
 
 * `RACE` - similar to `FEMALE`. What does `RACE = 3` mean? This one I have no intuition on at all.
 
@@ -105,8 +109,6 @@ What about our other variables? Let's take a look at some:
 * `Age.Category` - apparently we're also categorizing age rather than just keeping it continuous. But what does 1 mean? It's not 1 year old? We could probably figure this out by looking at what values of `AGE` map to which of `Age.Category`.
 
     <mark>Challenge:</mark> Can you figure out how to do that on your own?
-
-All this is guesswork so far, and it's exhausting. Plus even the intuition I showed above is borne from *years* of working with medical data. You all probably don't have that yet. Isn't there a better way? Oh heck yes, there is.
 
 ### Data Dictionaries/Codebooks
 
@@ -185,7 +187,7 @@ What I see is:
 
 2. When there are multiple words, sometimes they're separated by `_` and sometimes by `.`. 
 
-    Even worse, sometimes you'll get data with *spaces* in variable names. Oh, that's just the worst because then you have to remember to put them in backticks ``s whenever you write them in your code.
+    Even worse, sometimes you'll get data with *spaces* in variable names. That's just the worst because then you have to remember to put them in backticks ``s whenever you write them in your code.
 
 To fix that, let me introduce you to the magical function `janitor::clean_names()`. Let's run it:
 
@@ -509,7 +511,7 @@ penguins_dupe |>
 
 ```
 
-What does `distinct()` do? Basically it does `get_dupes()` to identify duplicate sets (pairs, trios, quadruplets, and so on); then identifies the *first* instance of each duplicated set in the data frame; then deletes all other instances in the set. That removes all duplicates and leaves you with only one record for each...wait for it... *distinct* observation.
+What does `distinct()` do? Basically it does `get_dupes()` to identify duplicate sets (pairs, trios, quadruplets, and so on); then identifies the *first* instance of each duplicated set in the data frame; then deletes all other instances in the set. That removes all duplicates and leaves you with only one record for each *distinct* observation.
 
 You can also use `distinct()` for subsets of columns, but the same big flashing CAUTION I listed above about accidentally identifying non-duplicate observations applies.
 
