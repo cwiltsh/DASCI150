@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 5.2 - Data Types II (Data Frames and Tibbles)"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -33,7 +35,7 @@ pacman::p_load(tidyverse, lubridate)
 
 ## Augmented Vectors
 
-At this point you might be thinking, "OK, we've seen vectors and lists, but they don't look anything like the **data frames** and **tibbles** we've been working with. I'm so confused." Fret not, everyone! We've just been building up to it. Data frames and tibbles are really just vectors and lists under the hood. 
+At this point you might be thinking, "OK, we've seen vectors and lists, but they don't look anything like the **data frames** and **tibbles** we've been working with. I'm so confused." Data frames and tibbles are really just vectors and lists under the hood. 
 
 To understand how we need to talk about **augmented vectors** - which are just vectors with some additional **attributes**.
 
@@ -113,7 +115,7 @@ For example, here's how R stores my birthday. We use `as.Date()` to create a dat
 
 ```{r date, exercise = TRUE}
 # My birthdate
-bday <- as.Date("1986-08-29")
+bday <- as.Date("1996-08-04")
 
   #Print it - it looks like a character string, doesn't it?
   bday
@@ -125,14 +127,14 @@ bday <- as.Date("1986-08-29")
   attributes(bday) # Here R tells us it has the class attribute "Date", which explains why it prints as it does
   
   #Here's how we print its underlying numeric value
-  unclass(bday) # I was born 6,084 days after January 1, 1970
+  unclass(bday) # I was born 9,712 days after January 1, 1970
 ```
 
-And here's how R stores my (approximate, I don't remember exactly) birth time:
+And here's how R stores my birth time (shout out Pisces rising):
 
 ```{r datetime, exercise = TRUE}
 # My birthdate and time
-bday <- ymd_hms("1986-08-29 10:19:52 AM") #ymd_hms tells R we're giving it data in the order Year, Month, Day, Hours, Minutes, Seconds
+bday <- ymd_hms("1996-08-04 10:45:00 AM") #ymd_hms tells R we're giving it data in the order Year, Month, Day, Hours, Minutes, Seconds
 
   #Print it - it looks like a character string, doesn't it?
   bday
@@ -144,7 +146,7 @@ bday <- ymd_hms("1986-08-29 10:19:52 AM") #ymd_hms tells R we're giving it data 
   attributes(bday) # Here R tells us it has the class attributes "POSIXCt" and "POSIXt", which indicate date-times
   
   #Here's how we print its underlying numeric value
-  unclass(bday) # I was born 525,694,792 seconds after midnight on January 1, 1970
+  unclass(bday) # I was born 839,155,500 seconds after midnight on January 1, 1970
 ```
 R only knows how to deal with these as dates and date-times because of attributes - otherwise it would treat these as character vectors!
 
@@ -196,7 +198,7 @@ Each element of that list is a column of the tibble - the first is `manufacturer
 
 The i'th row is comprised of the i'th elements of each column/vector that comprises the data frame/tibble. Consider, for example, the third observation when we print the tibble: the 2008 Audi A4 2.0L. It's manufacturer is the 3rd element of the `manufacturer` column/vector, its engine size is the 3rd element of the `displ` column/vector, and so on.
 
-If this feels a bit confusing to you, that's OK. Just move on. Happily when actually interfacing with data frames/tibbles R feels much more like a spreadsheet program, so everything you need is fairly intuitive. The key conceptual thing to understand is that underneath everything, a data frame/tibble is actually just an augmented list of columns, where each column is a vector. So it's lists, vectors, and attributes all the way down, even in seemingly more complex structures!
+If this feels a bit confusing to you, that's OK. Just move on. When actually interfacing with data frames/tibbles R feels much more like a spreadsheet program, so everything you need is fairly intuitive. The key conceptual thing to understand is that underneath everything, a data frame/tibble is actually just an augmented list of columns, where each column is a vector. So it's lists, vectors, and attributes all the way down, even in seemingly more complex structures!
 
 ### Subsetting Data Frames and Tibbles
 

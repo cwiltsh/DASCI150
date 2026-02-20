@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 4.1 - Tidy Data I"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -20,9 +22,9 @@ pacman::p_load(learnr)
 
 ## Intro
 
-I warned you, and it's time: it's time for the vegetables portion of the semester, where we'll remain for the next 8 or so classes. It's time to learn techniques for helping with what **data scientists** report they spend most of their day doing: **data cleaning**. It's most of what they do - we have to teach you, no way around it.
+I warned you, and it's time. It's time to learn techniques for helping with what **data scientists** report they spend most of their day doing: **data cleaning**. It's most of what they do - we have to teach you, no way around it.
 
-For what it's worth, I'm one of the weirdos who actually *loves* data cleaning. I find it to be an interesting challenge and puzzle on its own! And the sense of accomplishment I get when I produce a really clean data set for others to use - it's great! Maybe you'll be like me in that respect. I sure hope so! I'll do my best to get you there.
+For what it's worth, data cleaning *can* actually be fun. Think of it like an interesting challenge or puzzle. Not to mention the dopamine rush when you finally get your code to run and produce a really clean data set for others to use.
 
 
 ### Packages
@@ -49,19 +51,19 @@ When you first encounter data in the real world it usually has lots of problems.
 
 So far we've been working mostly with pre-cleaned data frames you've been provided. Not only that, we've been working only with **tidy** data frames, which follow some additional formatting rules that make them extremely easy to work with in the `tidyverse` and other paradigms (more on that below). 
 
-These data frames were either included in R natively, part of packages we loaded, or found independently and cleaned by me before being provided to you. We've been giving you the friendly Care Bears:
+These data frames were either included in R natively, part of packages we loaded, or found independently and cleaned by Dr. Binney before being provided to you.
 
-```{r img0, echo = FALSE, out.width = "100%", fig.align = "center", fig.cap = "The friendly Care Bears and a tidy data set."}
-knitr::include_graphics("images/Care_Bear_Tidy.png")
+```{r img0, echo = FALSE, out.width = "100%", fig.align = "center", fig.cap = "A nice and tidy dataset."}
+knitr::include_graphics("images/tidy_data.png")
 ```
 
-But in the real world data doesn't come to you like this. It comes as a mess. Even from very professional sources like the World Bank. It's more like a fierce grizzly bear:
+But in the real world data doesn't come to you like the image above. It comes as a mess. Even from very professional sources like the World Bank. It's more like the image below.
 
-```{r img1, echo = FALSE, out.width = "100%", fig.align = "center", fig.cap = "A roaring grizzly bear and [messy real-world data](https://databank.worldbank.org/source/world-development-indicators/preview/on)."}
-knitr::include_graphics("images/Grizzly_Messy.png")
+```{r img1, echo = FALSE, out.width = "100%", fig.align = "center", fig.cap = "[messy real-world data](https://databank.worldbank.org/source/world-development-indicators/preview/on)."}
+knitr::include_graphics("images/messy.png")
 ```
 
-That data on the right from the World Bank may not *look* that hard to work with or like it requires cleaning or tidying, but think about it for a moment. What does each row represent? Is each column a different variable, like we're used to seeing? If not, what is it? Where are the variables? Could we easily `select()` certain ones we want, or manipulate them with the techniques we learned?
+That data from the World Bank may not *look* that hard to work with or like it requires cleaning or tidying, but think about it for a moment. What does each row represent? Is each column a different variable, like we're used to seeing? If not, what is it? Where are the variables? Could we easily `select()` certain ones we want, or manipulate them with the techniques we learned?
 
 The answer is no.
 
@@ -217,9 +219,9 @@ Well that was annoying. See the value of tidy data for us yet?
 
 ## Should *All* Data Always Be Tidy?
 
-Oh boy, time to immediately contradict myself.
+Like any good epidemiologist would say, it depends.
 
-NO! The key message here is that while tidy data is often an excellent default, you shouldn't get fanatical about it. Be practical and process-oriented. It's fine to use a data format that works well for what you need to do.
+In short, NO! The key message here is that while tidy data is often an excellent default, you shouldn't get fanatical about it. Be practical and process-oriented. It's fine to use a data format that works well for what you need to do.
 
 I tried to avoid using the pejorative term "messy" above to apply to what is better termed un-tidy data. 
 
@@ -295,9 +297,9 @@ While *generally* long/tidy should probably be your default despite taking up a 
 
 For now all I want you to understand is the difference between the two and which more closely aligns with tidy data principles.
 
-We'll learn in the next Tutorial how to switch between long and wide data seamlessly. This can be tricky and disorienting at first, but once you get some practice with it it will become second nature, I promise. There's really no way around that other than practice, though, so expect to struggle a little at first - that's OK!
+We'll learn in the next Tutorial how to switch between long and wide data seamlessly. 
 
-### What Does, Like, "Tidy" Even MEAN, Man?
+### What Does"Tidy" Even MEAN?
 
 Un-tidy data can also sometimes be useful for plotting and analysis like we've done before. And the distinction between "tidy" and "un-tidy" can become messy and philosophical. Consider the abortion data below:
 
@@ -422,9 +424,9 @@ separate(<COLUMN YOU WISH TO SEPARATE>,
          sep= <CONDITION OR SPOT AT WHICH YOU SEPARATE OLD COLUMN VALUES>)
 ```
 
-The `sep =` argument can be one of two basic types: a character or string of characters at which you want the separation to occur (it will occur *each* time that character or string or characters is encountered), or a number of characters after which you want to create a split (for example, if you enter `5` it will split the column's values after the first 5 characters). Note the former can be extended to any **regular expression (regex)**. We'll learn what regex is a couple Tutorials later. Get...er, excited. Yeah, that's definitely the right word to use. I am not being sarcastic at all.
+The `sep =` argument can be one of two basic types: a character or string of characters at which you want the separation to occur (it will occur *each* time that character or string or characters is encountered), or a number of characters after which you want to create a split (for example, if you enter `5` it will split the column's values after the first 5 characters). Note the former can be extended to any **regular expression (regex)**. We'll learn what regex is a couple Tutorials later.
 
-Anyway, here's how we'd tidy up `table3`:
+Here's how we'd tidy up `table3`:
 
 ```{r sep3, exercise = TRUE}
 #Tidying up table3 with separate()
@@ -470,7 +472,7 @@ economics |>
 
 ```
 
-Bonus points (not really, this isn't graded) if you can figure out how to get rid of that nasty hyphen at the start of our month-day column values. This is left as an exercise for the reader.
+Bonus points if you can figure out how to get rid of that nasty hyphen at the start of our month-day column values. This is left as an exercise for the reader.
 
 ### `unite()`
 

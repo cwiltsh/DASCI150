@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 4.2 - Tidy Data II"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:

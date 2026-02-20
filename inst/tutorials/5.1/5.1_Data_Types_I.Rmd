@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 5.1 - Data Types I (Vectors and Lists)"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "February 2026"
 
 output: 
   learnr::tutorial:
@@ -20,7 +22,6 @@ pacman::p_load(learnr)
 
 ## Intro and Setup
 
-Today we go back to our vegetables, I'm sorry to say. But it's necessary, so please stick with it.
 
 So far I've been a bit limited in what I can teach you to do, and how I can teach you to do it, because we've just been working with **data frames/tibbles** and the `tidyverse`. By returning to some fundamentals we've skipped over that underlie them I'll give you a.) a better understanding of how R does things and why it behaves as it does, and b.) a firmer foundation to broaden your skill set and learn how to do lots of other things in R beyond this course.
 
@@ -54,7 +55,7 @@ You should now see two **objects**, `lucky` and `string`, in your **environment 
 
 If you're a mathy person, you might be able to guess what **(atomic) vectors** are. They're simply a combination of multiple **scalars**! (Actually R doesn't really have a separate category for "scalars" under the hood, so a scalar is, properly speaking, just a vector with a single rather than multiple elements.)
 
-You create them using a function you've already seen, `c()`. The c is short for *combine*.
+You create them using a function you've already seen, `c()`. The c is short for *combine* or *concatenate*.
 
 ```{r vec1, exercise = TRUE}
 # A scalar
@@ -66,7 +67,7 @@ first_five_primes <- c(2, 3, 5, 7, 11)
 first_five_primes
 ```
 
-There's one other important way to create vectors - the colon `:` notation you may remember from `select()`. In `select()` it allowed you to select a bunch of adjacent columns. It works much the same way when creating vectors by strining together a bunch of consecutive numbers.
+There's one other important way to create vectors - the colon `:` notation you may remember from `select()`. In `select()` it allowed you to select a bunch of adjacent columns. It works much the same way when creating vectors by stringing together a bunch of consecutive numbers.
 
 ```{r vec2, exercise = TRUE}
 # An atomic vector
@@ -140,7 +141,7 @@ When dividing 2 by 3 the remainder is not 0, so we get `FALSE`. When dividing 3 
 
 Character vectors contain text. Each element is called a **string**, which is just computer science jargon for a bit of text. Strings can be any length and are actually pretty complex to work with in R. 
 
-**Strings are always enclosed in quotation marks!** This is how we differentiate them from numbers and object names. For example, `Zach` refers to an object named `Zach` - this could be a vector of numbers, or a data frame, or anything! But `"Zach"` refers to a string, a bit of text - that is, the literal letters Z, a, c, and h next to each other. 
+**Strings are always enclosed in quotation marks!** This is how we differentiate them from numbers and object names. For example, `Charis` refers to an object named `Charis` - this could be a vector of numbers, or a data frame, or anything! But `"Ralph"` refers to a string, a bit of text - that is, the literal letters r, a, l, p, and h next to each other. 
 
 Here are a couple examples of a character vector. Can you figure out the length of each one?
 
@@ -150,7 +151,7 @@ char_vec_1 <- c(letters)
 char_vec_1
 
 # Another character vector
-char_vec_2 <- c("Happy", "Birthday", "To", "You", "!", "You are 34 years old.")
+char_vec_2 <- c("Happy", "Birthday", "To", "You", "!", "You are 19 years old.")
 char_vec_2
 
 ```
@@ -161,9 +162,9 @@ There is lots more detail to working with **strings**, but we will cover that la
 
 There are two types of **numeric vectors**: **integer vectors** and **double vectors**. Integer vectors only contain whole numbers, while "doubles" can handle decimals. 
 
-The term "double" comes from the amount of computer memory needed to hold a decimal number with a certain amount of precision; one way, a "float", takes 32 bits, but the more precise "double" uses 64 bits. I'm sure you all really cared. The more you know!
+> Fun fact: The term "double" comes from the amount of computer memory needed to hold a decimal number with a certain amount of precision; one way, a "float", takes 32 bits, but the more precise "double" uses 64 bits. 
 
-Back to useful things. By default R will store numbers as **doubles**. To specify you want an integer you have to use `L` afterwards. I have no idea why; please don't ask.
+By default R will store numbers as **doubles**. To specify you want an integer you have to use `L` afterwards. I have no idea why; please don't ask.
 
 ```{r vec_num, exercise = TRUE}
 # A double vector
@@ -311,11 +312,11 @@ You can subset vectors in various ways.
 
 #### Subset Using Numerical Positions
 
-Let's start by using numers to represent positions in the vector:
+Let's start by using numbers to represent positions in the vector:
 
 ```{r vec_sub1, exercise = TRUE}
 # Create a vector
-bday <- c("Happy", "Birthday", "To", "You", "!", "You are 34 years old.")
+bday <- c("Happy", "Birthday", "To", "You", "!", "You are 19 years old.")
 
 # Get just the first element
 bday[1]
@@ -358,7 +359,7 @@ You may need to think for a moment about what that last line is doing. Instead o
 
 2. These then get fed into our brackets for subsetting, so the code *becomes* `bday[3,7]`, but 3 and 7 are output by `which()` rather than input by us manually.
 
-This may seem arbitrary now, but I assure you it's actually quite useful (just wait until the homework for this Tutorial)!
+This may seem arbitrary now, but I assure you it's actually quite useful (**hint hint** like for an upcoming homework)!
 
 One last thing here. What if we only want *one* instance of "Birthday?" That's no problem once we remember `which()` returns a vector itself.
 
@@ -435,7 +436,7 @@ You've fed R two vectors of different lengths: one of length 10 (`c(11:20)`), an
 
 The code above might become clearer if you replace `5` with `c(5)`. This is actually what R is doing under the hood - when you provide it a single number or other scalar/element, it's actually just creating a vector of length 1. This makes R an **interpretative** language - it sometimes does something in the background you didn't explicitly tell it to do, without telling you it's doing so. It tries to *interpret* what you're asking for through its ability to do things.
 
-OK, end of sidenote. Let's look at a slightly more complex example. 
+**End of sidenote.** Let's look at a slightly more complex example. 
 
 <mark>Challenge:</mark> Before running the code below, can you predict what it's going to return?
 
@@ -771,7 +772,7 @@ The third list, `x3`, contains two elements:
     i) As its first element an integer vector of length 1
     ii) As its second element, a list of length 1, with its sole element an integer vector of length 1
     
-Is your brain melting yet? This is tough. Let's move on.
+Is your brain melting yet? I hate this. Let's move on.
 
 ### Subsetting Lists
 
