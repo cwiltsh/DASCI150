@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 6.1 - Factors"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Charis Wiltshire, MPH"
+date: "March 2026"
 
 output:
   learnr::tutorial:
