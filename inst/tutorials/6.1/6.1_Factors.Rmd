@@ -105,7 +105,7 @@ It puts the Reds first because they're coded as `1`, then Yellow as `2`, then Gr
 
 Let's practice a bit more:
 
-```{r fct_prac1, eval = FALSE}
+```{r fct_prac1, exercise = TRUE}
 # Change the levels = argument below in your own code so traffic_light becomes 3 1 3 2 instead of 1 2 1 3
 traffic_light <- factor(c("Red", "Yellow", "Red", "Green"), levels = c("Red", "Yellow", "Green"))
   #Note the underlying data is the same, you just changed how it was coded!
@@ -115,7 +115,7 @@ Now (hopefully) 1 = Yellow, 2 = Green, and 3 = Red, since you specified the orde
 
 If you include a value in your data that isn't specified in an explicit levels list, it'll be replaced with `NA`:
 
-```{r fct_prac2, eval = FALSE}
+```{r fct_prac2, exercise = TRUE}
 # What happens if you change the data to this, but don't change the levels? Look at your Environment pane.
 # What did "Blue" become? Can you figure out why?
 traffic_light2 <- factor(c("Red", "Yellow", "Red", "Blue"), levels = c("Red", "Yellow", "Green"))
