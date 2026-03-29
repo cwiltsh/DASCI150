@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 9.1 - If-Else Blocks, For-Loops"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modifed by Charis Wiltshire, MPH"
+date: "March 2026"
 
 output: 
   learnr::tutorial:
@@ -25,7 +27,7 @@ Today we enter our final chapter, where we superficially cover some major statis
 Once again we don't need much from packages today - just the `tidyverse`, plus `palmerpenguins` for some data. **Just remember to run this code in your own script before proceeding.**
 
 ```{r setup, message = FALSE}
-pacman::p_load(tidyverse, lubridate, palmerpenguins)
+pacman::p_load(tidyverse, palmerpenguins)
 data(penguins)
 
 ```
@@ -40,8 +42,6 @@ But what if sometimes you want code to run, and other times you don't?
 Or what if sometimes you want your code to do one thing, but other times another thing?
 
 Enter the idea of **conditional execution** - code should run ("execute") different ways depending on whether certain conditions are met. We'll look at two fundamental methods for conditional execution, common across many programming languages besides R: **if-else statements** and **for-loops**. 
-
-Every time I write for-loops I think of Froot Loops. Now I want some Froot Loops. Is that everybody or just me? Go have some Froot Loops, then come back. I'll wait.
 
 Note also we have already encountered one particular kind of condition execution in R already. Do you remember? It was `case_when()` for data transformation!
 
@@ -60,7 +60,7 @@ if (condition) {
 
 ```
 
-Let's have a little fun to introduce if-else statements. Say you want R to offer you some sort of greeting when you start a script, but that greeting should depend on the time of day: "Good Morning!", "Good Afternoon!", "Good Evening!", or "Go To Sleep, Dummy." 
+Let's have a little fun to introduce if-else statements. Say you want R to offer you some sort of greeting when you start a script, but that greeting should depend on the time of day: "Good Morning!", "Good Afternoon!", "Good Evening!", or "Go To Sleep, Bestie" 
 
 ### A Single If Statement
 
@@ -142,7 +142,7 @@ if (between(hr, 5, 11)) {
   
 } else { # If all the conditions above aren't met (i.e. in any other hour), do this
   
-  print("Go to bed, dummy!")
+  print("Go to bed, bestie!")
   
 }
 
@@ -188,18 +188,18 @@ For example, what if I want my computer to only wish *me* good morning, and not 
 
 ```{r if_mult, exercise = TRUE}
 # Tell R a name
-name <- "Zach"
+name <- "Charis"
 
 
 hr <- 6 # Setting the hour manually to 6am for this example so you know that condition is met
 
-if (between(hr, 5, 11) & name == "Zach") { # Check if it's between 5am and 11am
+if (between(hr, 5, 11) & name == "Charis") { # Check if it's between 5am and 11am
   
-  print("Good Morning, Zach!")
+  print("Good Morning, Charis!")
 
 } else {
   
-  "Hey, you're not Zach! Security!!!"
+  "Intruder alert! INTRUDER ALERT!!"
   
 }
 

@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 6.4 - Advanced Visualization: Maps"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "March 2026"
 
 output: 
   learnr::tutorial:
@@ -219,7 +221,6 @@ ggplot(us_state, aes(x = long, y = lat)) +
   coord_fixed(1.3)
 
 ```
-GAH! KILL IT! KILL IT WITH FIRE!
 
 Without `group()` R tries to draw all these states as a single shape without picking up its pen, and you get a mess like the above. Consider what's happening here by looking at the bottom-most "weird" line: it starts on the right in the southwestern corner of Alabama, and extends left to the western border of the state of Arizona. This simply indicates R is moving from one row to the next in the data frame without creating a new shape. The data are organized alphabetically by state, so the last coordinate for Alabama to the first coordinate for Arizona!
 
@@ -241,9 +242,9 @@ ggplot(us_state, aes(x = long, y = lat)) +
   coord_fixed(1.3)
 
 ```
-Not great! Now it tries to plot and connect all the points at each longitude within each state first, rather than drawing state borders in the proper...well, `order`.
+Not great! Now it tries to plot and connect all the points at each longitude within each state first, rather than drawing state borders in the proper `order`.
 
-<mark>Challenge:</mark> Can you figure out how to modify the code above to undo our horrible mistake of re-sorting the data? Deleting the current `arrange()` is cheating. :)
+<mark>Challenge:</mark> Can you figure out how to modify the code above to undo our horrible mistake of re-sorting the data *without* deleting the current `arrange()`.
 
 #### Subsetting and "Zooming In"
 
@@ -481,4 +482,3 @@ Unfortunately when crafting this Tutorial I found it pretty finicky, so we won't
 
 You've learned the basics of creating maps in R! There's much more to learn, but you're well on your way to accomplishing most relatively simple mapping tasks. Check out [this course lecture from Eric Anderson at NOAA](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html) for more.
 
-Next up is something very Shiny...
