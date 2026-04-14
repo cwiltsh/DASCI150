@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 9.2 - Writing Functions"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "April 2026"
 
 output: 
   learnr::tutorial:
@@ -33,16 +35,15 @@ data(penguins)
 
 ## Creating Your Own Functions
 
-R is a **functional programming language**, meaning...well, that it's largely based around functions. You've been using functions all along in this course, and we've already discussed a lot of things about them, like **arguments**. 
+R is a **functional programming language**, meaning that it's largely based around functions. You've been using functions all along in this course, and we've already discussed a lot of things about them, like **arguments**. 
 
 Just as a brief reminder, a function is a reusable piece of code that takes some **input** (**arguments**) and returns some **output**.
 
-R has thousands of functions already that do the vast majority of tasks you'll want to accomplish regularly - think the `dplyr` verbs, `sum()`, `read.csv()`, `ggplot()`, and so on. As an open-source language, these functions come from a mix of the core group that maintains the basics of R, major development groups like RStudio - which also oversees the `tidyverse` - and individual or small groups of developers who write packages with specific functions for their own purposes. You could even contribute a function or package one day.
-
+R has thousands of functions already that do the vast majority of tasks you'll want to accomplish regularly - think the `dplyr` verbs, `sum()`, `read.csv()`, `ggplot()`, and so on. As an open-source language, these functions come from a mix of the core group that maintains the basics of R, major development groups like RStudio - which also oversees the `tidyverse` - and individual or small groups of developers who write packages with specific functions for their own purposes.
 
 ### When and Why Create a Function
 
-Speaking of which, sometimes you run into a task that you want to do over and over but for which a function doesn't exist yet. Usually these will be pretty specific instances - say you want to process a large number of data sets in a way very specific to your company or research project. No one else does exactly what you want to do, but you want to do it many times.
+Sometimes you run into a task that you want to do over and over but for which a function doesn't exist yet. Usually these will be pretty specific instances - say you want to process a large number of data sets in a way very specific to your company or research project. No one else does exactly what you want to do, but you want to do it many times.
 
 A good rule of thumb is: **if you find yourself copy-pasting the same code structure more than twice, maybe it should be a function instead**. Abstracting common but idiosyncratic (specific to you or your company or research group) tasks into your own functions has several advantages, which we've already discussed but I'll reiterate here:
 

@@ -1,8 +1,10 @@
 ---
 title: "Tutorial 9.4 - Statistical Simulations"
 
-author: "Zachary Binney, PhD"
-date: "January 2024"
+author: 
+- "Zachary Binney, PhD"
+- "Modified by Charis Wiltshire, MPH"
+date: "April 2026"
 
 output: 
   learnr::tutorial:
@@ -20,7 +22,7 @@ pacman::p_load(learnr)
 
 ## Intro and Setup
 
-Today is our *final* Tutorial - yay? yay! - where we briefly cover some basic techniques for simulating your own data to test out regression models or other statistical techniques.
+This is our *final* Tutorial where we briefly cover some basic techniques for simulating your own data to test out regression models or other statistical techniques.
 
 Once again we don't need much from packages today - just the `tidyverse` and the `palmerpenguins` data, as well as a new package, `MASS`, to produce some of the statistical simulations we'll need. **Just remember to run this code in your own script before proceeding.**
 
@@ -43,7 +45,7 @@ The simplest scenario might be that you want a tibble with, say, 100,000 draws f
 
 ```{r norm_single, exercise = TRUE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a tibble with a single column with 100,000 draws from a normal distribution
 rannorm <- tibble(
@@ -57,6 +59,7 @@ rannorm
 
 ### YOUR CODE HERE
 ```
+
 ```{r quiz1, echo=FALSE}
   
 quiz(
@@ -75,7 +78,7 @@ Now we could plot the data as another gut check that our simulation worked corre
 
 ```{r norm_single_plot-setup, include = FALSE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a tibble with a single column with 100,000 draws from a normal distribution
 rannorm <- tibble(
@@ -109,7 +112,7 @@ Creating multiple random normal variables is a trivial extension of our code abo
 
 ```{r norm_multi, exercise = TRUE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a tibble with a single column with 10,000 draws from a normal distribution
 rannorm <- tibble(
@@ -132,7 +135,7 @@ Does there seem to be any correlation in the two variables above? No, right? And
 
 ```{r norm_multi_line, exercise = TRUE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a tibble with a single column with 10,000 draws from a normal distribution
 rannorm <- tibble(
@@ -252,7 +255,7 @@ The last thing you may want to do is take a sample from some existing data. Let'
 
 ```{r norm_single_vec, exercise = TRUE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a vector of 100,000 draws from a normal distribution
 rannorm <- rnorm(n = 1e5, # 1e5 = 1 x 10^5 = 100,000 draws
@@ -270,7 +273,7 @@ Say we want to sample 10,000 observations from our 100,000 we just produced. We 
 
 ```{r sample_vec_norep-setup, include = FALSE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a vector with 100,000 draws from a normal distribution
 rannorm <- rnorm(n = 1e5, # 1e5 = 1 x 10^5 = 100,000 draws
@@ -280,7 +283,7 @@ rannorm <- rnorm(n = 1e5, # 1e5 = 1 x 10^5 = 100,000 draws
 
 ```{r sample_vec_norep, exercise = TRUE}
 # Sample is also a pseudo-random operations, so we must set a seed to create a reproducible sample
-set.seed(11142020)
+set.seed(1996)
 
 # Sample 10,000 elements without replacement
 samp_norep <- sample(x = rannorm, # Vector to sample from
@@ -299,7 +302,7 @@ Sometimes, though, you want to sample *with* replacement - that is, when you sam
 
 ```{r sample_vec_rep-setup, include = FALSE}
 # Set the seed to create a reproducible draw
-set.seed(11142020)
+set.seed(1996)
 
 # Create a vector with 100,000 draws from a normal distribution
 rannorm <- rnorm(n = 1e5, # 1e5 = 1 x 10^5 = 100,000 draws
@@ -309,7 +312,7 @@ rannorm <- rnorm(n = 1e5, # 1e5 = 1 x 10^5 = 100,000 draws
 
 ```{r sample_vec_rep, exercise = TRUE}
 # Sample is also a pseudo-random operations, so we must set a seed to create a reproducible sample
-set.seed(11142020)
+set.seed(1996)
 
 # Sample 10,000 elements without replacement
 samp_rep <- sample(x = rannorm,
@@ -332,7 +335,7 @@ Anyway, here's how it's done with the `penguins` data:
 
 ```{r sample_rows, exercise = TRUE}
 # Sample is also a pseudo-random operations, so we must set a seed to create a reproducible sample
-set.seed(11142020)
+set.seed(1996)
 
 # Sample 100 rows without replacement
 penguins_sample <- slice_sample(.data = penguins,
@@ -346,7 +349,7 @@ You can also sample a proportion of observations instead of a set number. This c
 
 ```{r sample_rows_prop, exercise = TRUE}
 # Sample is also a pseudo-random operations, so we must set a seed to create a reproducible sample
-set.seed(11142020)
+set.seed(1996)
 
 
 # Sample 50% of a data frame/tibble instead
@@ -361,6 +364,3 @@ penguins_prop
 
 Today we covered some basic techniques for simulating your own data to test out regression models or other statistical techniques.
 
-In our next Tutorial...well, that's it, actually! Thanks for joining me on this QTM 150 journey. I hope it was as fun for you as it was for me. Or at least not terrifically miserable. Or if it was terrifically miserable, you at least got some skills out of it that may help you land a job or do some cool data analysis later on. Gotta stay realistic.
-
-Thanks again, everyone! Your princess is *not* in another castle.
