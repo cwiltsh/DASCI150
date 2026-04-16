@@ -120,7 +120,7 @@ range(penguins$body_mass_rescale, na.rm = TRUE)
 ```
 Even better! Now we can abstract this into a function. The way you do that is with another function called...well, called `function()`. It creates **functions**.
 
-```{r func_rescale, eval = FALSE}
+```{r func_rescale, exercise = TRUE}
 
 rescale01 <- function(vec) { # Assign the function to an object with a memorable, short and evocative name
                              # Specify the inputs for the function - in our cae, just the data vector, vec
@@ -135,7 +135,7 @@ Run this code in your own script, then look over in the Environment Pane. Scroll
 
 Take your new function for a test drive in your own script.
 
-```{r func_rescale_test, eval = FALSE}
+```{r func_rescale_test, exercise = TRUE}
 # Now we can use this function any time we want to calculate the range of a column. Let's use it!
 penguins_rescale <- penguins |> 
   mutate(body_mass_rescale = rescale01(body_mass_g), # We can use our new function right here. So compact!
@@ -166,7 +166,7 @@ Usually it's not a good idea to try to write a function from scratch. Get some c
 
 Here's the general structure of a function, illustrated with a trivial function that takes a single number as input and checks if it's greater than 2.
 
-```{r func_general}
+```{r func_general, exercise = TRUE}
 
 # 1. Name of the function
 check <- 
@@ -191,7 +191,7 @@ check <-
 }
 ```
 
-```{r fg, eval = FALSE, include = TRUE}
+```{r fg, include = FALSE}
 
 # 1. Name of the function
 check <- 
@@ -238,7 +238,7 @@ One important thing we haven't covered yet is a function's **return value**. We 
 
 A function will return, by default, *the last thing it does*. That's why `check()` returns what it does above. But you can also make this explicit using `return()`:
 
-```{r func_general2, eval = FALSE}
+```{r func_general2, exercise = TRUE}
 
 # Make our rescale function more explicit
 rescale01 <- function(vec) {
